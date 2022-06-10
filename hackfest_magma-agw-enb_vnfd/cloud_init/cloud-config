@@ -1,0 +1,8 @@
+#cloud-config
+password: osm2022
+chpasswd: { expire: False }
+ssh_pwauth: True
+packages:
+  - net-tools
+  - python-importlib
+

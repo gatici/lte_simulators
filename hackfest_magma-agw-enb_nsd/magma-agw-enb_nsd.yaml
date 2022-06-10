@@ -1,0 +1,22 @@
+nsd:
+  nsd:
+  - description: Magma AGW 1.0.0 with tools & srsLTE connected to PNF Gateway
+    designer: Whitestack
+    df:
+    - id: default-df
+      vnf-profile:
+      - id: MagmaAGWsrsLTE
+        virtual-link-connectivity:
+        - constituent-cpd-id:
+          - constituent-base-element-id: MagmaAGWsrsLTE
+            constituent-cpd-id: srsLTE-mgmt-ext
+          virtual-link-profile-id: mgmt
+        vnfd-id: hackfest_magma-agw-enb_vnfd
+    id: hackfest_magma-agw-enb_nsd
+    name: hackfest_magma-agw-enb_nsd
+    version: 1.0
+    virtual-link-desc:
+    - id: mgmt
+      mgmt-network: true
+    vnfd-id:
+    - hackfest_magma-agw-enb_vnfd

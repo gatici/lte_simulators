@@ -1,0 +1,104 @@
+vnfd:
+  description: Magma srsLTE VDU
+  df:
+  - id: default-df
+    instantiation-level:
+    - id: default-instantiation-level
+      vdu-level:
+      - number-of-instances: 1
+        vdu-id: srsLTE-vdu
+    vdu-profile:
+    - id: srsLTE-vdu
+      min-number-of-instances: 1
+    virtual-link-profile:
+    - flavour:
+      id: internalS1
+      virtual-link-protocol-data:
+        l3-protocol-data:
+          cidr: 192.168.100.0/24
+          description: S1 test network
+          dhcp-enabled: true
+          ip-version: ipv4
+          name: internalS1-l3-protocol-data
+    lcm-operations-configuration:
+      operate-vnf-op-config:
+        day1-2:
+        - config-access:
+            ssh-access:
+              default-user: ubuntu
+              required: true
+          config-primitive:
+          - name: attach-ue
+            execution-environment-ref: srs-enb-ue-ee
+            parameter:
+            - data-type: STRING
+              name: usim-imsi
+            - data-type: STRING
+              name: usim-k
+            - data-type: STRING
+              name: usim-opc
+          - name: detach-ue
+            execution-environment-ref: srs-enb-ue-ee
+          id: srsLTE-vdu
+          execution-environment-list:
+          - id: srs-enb-ue-ee
+            juju:
+              charm: srs-enb-ue
+              proxy: false
+          config-access:
+            ssh-access:
+              default-user: ubuntu
+              required: true
+          initial-config-primitive:
+          - name: config
+            execution-environment-ref: srs-enb-ue-ee
+            parameter:
+            - name: bind-address-subnet
+              value: 192.168.100.0/24
+            seq: 1
+  ext-cpd:
+  - id: srsLTE-mgmt-ext
+    int-cpd:
+      cpd: eth0-int
+      vdu-id: srsLTE-vdu
+  id: hackfest_magma-agw-enb_vnfd
+  int-virtual-link-desc:
+  - id: internalS1
+  mgmt-cp: srsLTE-mgmt-ext
+  product-name: hackfest_magma-agw-enb_vnfd
+  provider: Whitestack
+  sw-image-desc:
+  - id: ubuntu20.04
+    image: ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20220606
+    name: ubuntu20.04
+  vdu:
+  - cloud-init-file: cloud-config
+    description: srsLTE-vdu
+    id: srsLTE-vdu
+    int-cpd:
+    - id: eth0-int
+      virtual-network-interface-requirement:
+      - name: eth0
+        virtual-interface:
+          type: PARAVIRT
+    - id: eth1-int
+      int-virtual-link-desc: internalS1
+      virtual-network-interface-requirement:
+      - name: eth1
+        virtual-interface:
+          type: PARAVIRT
+    name: srsLTE-vdu
+    sw-image-desc: ubuntu20.04
+    virtual-compute-desc: srsLTE-vdu-compute
+    virtual-storage-desc:
+    - srsLTE-vdu-storage
+  version: 1.0
+  virtual-compute-desc:
+  - id: srsLTE-vdu-compute
+    virtual-cpu:
+      num-virtual-cpu: 2
+    virtual-memory:
+      size: 4.0
+  virtual-storage-desc:
+  - id: srsLTE-vdu-storage
+    size-of-storage: 15
