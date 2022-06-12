@@ -163,6 +163,7 @@ class SrsLteCharm(CharmBase):
 
     def _on_config_changed(self, _):
         self._stored.bind_addr = self._get_bind_address()
+        self._stored.mme_addr = self.model.config.get("mme_addr")
         self._configure_srsenb_service()
         # Restart the service only if it is running
         if self._stored.started:
@@ -202,7 +203,7 @@ class SrsLteCharm(CharmBase):
     def _mme_relation_changed(self, event):
         # Get mme address from relation
         if event.unit in event.relation.data:
-            mme_addr = event.relation.data[event.unit].get("mme-addr")
+            mme_addr = event.relation.data[event.unit].get("mme_addr")
             if not is_ipv4(mme_addr):
                 return
             self._stored.mme_addr = mme_addr
@@ -238,8 +239,7 @@ class SrsLteCharm(CharmBase):
 
     def _get_srsenb_command(self):
         srsenb_command = [SRS_ENB_BINARY]
-        if self._stored.mme_addr:
-            srsenb_command.append(f"--enb.mme_addr={self._stored.mme_addr}")
+        srsenb_command.append(f'--enb.mme_addr={self._stored.mme_addr}')
         if self._stored.bind_addr:
             srsenb_command.append(f"--enb.gtp_bind_addr={self._stored.bind_addr}")
             srsenb_command.append(f"--enb.s1c_bind_addr={self._stored.bind_addr}")
@@ -286,7 +286,7 @@ class SrsLteCharm(CharmBase):
 
     def _get_bind_address(self):
         bind_addr = None
-        bind_address_subnet = self.model.config.get("bind-address-subnet")
+        bind_address_subnet = self.model.config.get("bind_address_subnet")
         if bind_address_subnet:
             bind_addr = ip_from_iface(bind_address_subnet)
         else:

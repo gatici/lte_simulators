@@ -3,11 +3,11 @@ analysis:
   - name: language
     result: python
   - name: framework
-    result: operator
+    result: unknown
 bases:
 - architectures:
   - amd64
   channel: '20.04'
   name: ubuntu
-charmcraft-started-at: '2022-06-10T10:25:46.820415Z'
+charmcraft-started-at: '2022-06-11T23:35:09.967653Z'
 charmcraft-version: 1.7.1

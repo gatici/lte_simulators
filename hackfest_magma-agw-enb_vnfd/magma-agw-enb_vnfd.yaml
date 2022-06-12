@@ -15,7 +15,7 @@ vnfd:
       id: internalS1
       virtual-link-protocol-data:
         l3-protocol-data:
-          cidr: 192.168.100.0/24
+          cidr: 192.168.32.0/24
           description: S1 test network
           dhcp-enabled: true
           ip-version: ipv4
@@ -53,8 +53,10 @@ vnfd:
           - name: config
             execution-environment-ref: srs-enb-ue-ee
             parameter:
-            - name: bind-address-subnet
-              value: 192.168.100.0/24
+            - name: bind_address_subnet
+              value: <bind_address_subnet>
+            - name: mme_addr
+              value: <mme_addr>
             seq: 1
   ext-cpd:
   - id: srsLTE-mgmt-ext

@@ -4,11 +4,16 @@
 # This is only an example, and you should edit to suit your needs.
 # If you don't need config, you can remove the file entirely.
 options:
-  bind-address-subnet:
+  bind_address_subnet:
     type: string
     description: |
       The selected bind address will need to be part of this subnet.
       If this is not set, it will use the IP address from the default interface.
+    default: ""
+  mme_addr:
+    type: string
+    description: |
+      This is MME address from AGW
     default: ""
   enb-name:
     type: string

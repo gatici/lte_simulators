@@ -2,4 +2,3 @@ ops
 psutil
 netifaces
 netaddr
-jinja2
