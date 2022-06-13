@@ -20,12 +20,12 @@ options:
     description: |
       TODO
     default: dummyENB01
-  enb-mcc:
+  enb_mcc:
     type: string
     description: |
       TODO
     default: "722"
-  enb-mnc:
+  enb_mnc:
     type: string
     description: |
       TODO
