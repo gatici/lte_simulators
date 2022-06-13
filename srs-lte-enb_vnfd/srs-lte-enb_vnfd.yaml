@@ -57,6 +57,10 @@ vnfd:
               value: <bind_address_subnet>
             - name: mme_addr
               value: <mme_addr>
+            - name: enb_mcc
+              value: <enb_mcc>
+            - name: enb_mnc
+              value: <enb_mnc>
             seq: 1
   ext-cpd:
   - id: srsLTE-mgmt-ext

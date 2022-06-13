@@ -21,15 +21,15 @@ options:
       TODO
     default: dummyENB01
   enb-mcc:
-    type: int
+    type: string
     description: |
       TODO
-    default: 722
+    default: "722"
   enb-mnc:
-    type: int
+    type: string
     description: |
       TODO
-    default: 17
+    default: "17"
   enb-rf-device-name:
     type: string
     description: |
