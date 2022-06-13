@@ -1,5 +1,5 @@
 vnfd:
-  description: Magma srsLTE VDU
+  description: srsLTE VDU
   df:
   - id: default-df
     instantiation-level:
@@ -63,12 +63,12 @@ vnfd:
     int-cpd:
       cpd: eth0-int
       vdu-id: srsLTE-vdu
-  id: hackfest_magma-agw-enb_vnfd
+  id: srs-lte-enb_vnfd
   int-virtual-link-desc:
   - id: internalS1
   mgmt-cp: srsLTE-mgmt-ext
-  product-name: hackfest_magma-agw-enb_vnfd
-  provider: Whitestack
+  product-name: srs-lte-enb_vnfd
+  provider: ETSI
   sw-image-desc:
   - id: ubuntu20.04
     image: ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20220606

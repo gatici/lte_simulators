@@ -1,0 +1,22 @@
+nsd:
+  nsd:
+  - description: srsLTE connected to PNF Gateway
+    designer: ETSI
+    df:
+    - id: default-df
+      vnf-profile:
+      - id: srsLTE
+        virtual-link-connectivity:
+        - constituent-cpd-id:
+          - constituent-base-element-id: srsLTE
+            constituent-cpd-id: srsLTE-mgmt-ext
+          virtual-link-profile-id: mgmt
+        vnfd-id: srs-lte-enb_vnfd
+    id: srs-lte-enb_nsd
+    name: srs-lte-enb_nsd
+    version: 1.0
+    virtual-link-desc:
+    - id: mgmt
+      mgmt-network: true
+    vnfd-id:
+    - srs-lte-enb_vnfd
